@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de contactos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="CSS/Contactos.css" rel="stylesheet" type="text/css">
+    <style>
+    body {
+        background-image: url("imagenes/61896.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+    }
+.imagenAnimada {
+  position: relative;
+  animation: moverImagen 6s infinite;
+}
+
+@keyframes moverImagen {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  50% {
+    top: 0;
+    left: 90%;
+  }
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+/*reponsividad*/
+
+</style>
+
+    <script>
+        function validacion() {
+            var enviar = true;
+            var errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = '';
+
+            if (document.getElementById('nombre').value.length < 4) {
+                enviar = false;
+                errorContainer.innerHTML += '<p>El nombre tiene que tener una longitud mayor a 3 caracteres</p>';
+            }
+
+            if (document.getElementById('direccion').value.length < 8) {
+                enviar = false;
+                errorContainer.innerHTML += '<p>La dirección tiene que tener una longitud mayor a 7 caracteres</p>';
+            }
+
+            if (isNaN(document.getElementById('edad').value)) {
+                enviar = false;
+                errorContainer.innerHTML += '<p>La edad debe tener valores numéricos</p>';
+            }
+
+            if (document.getElementById('destino').value == '') {
+                enviar = false;
+                errorContainer.innerHTML += '<p>No has seleccionado un destino de interés</p>';
+            }
+
+            if (!document.getElementById('acepto').checked) {
+                enviar = false;
+                errorContainer.innerHTML += '<p>Debes aceptar las condiciones del registro</p>';
+            }
+
+            return enviar;
+        }
+
+        function obtenerUbicacion() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitud = position.coords.latitude;
+                    var longitud = position.coords.longitude;
+
+                    // Aquí puedes utilizar las coordenadas para realizar acciones, como llamar a una API de ubicación o mostrar información relacionada con la ubicación.
+                    // Por ejemplo, puedes hacer una llamada a una API de geocodificación inversa para obtener la dirección basada en las coordenadas.
+
+                    // En este ejemplo, actualizaremos el valor del campo de dirección con las coordenadas obtenidas.
+                    document.getElementById('direccion').value = latitud + ', ' + longitud;
+                });
+            } else {
+                console.log('La geolocalización no es soportada por este navegador.');
+            }
+        }
+    </script>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+<header>
+    <h1 class="d-inline" align="left">Aero Connect <img src="imagenes/plane-160861_1280.jpg" width="80" align="right"></h1>
+    <nav>
+        <ul>
+            <li><a href="INDEX.html" target="_blank">Inicio</a></li>
+            <li><a href="DESTINOS.html" target="_blank">Destinos</a></li>
+            <li><a href="RESERVAS.html" target="_blank">Reservas</a></li> 
+            <li><a href="CONTACTOS.html">Contactos</a></li> 
+       </ul>
+    </nav>
+</header>
+
+<img src="imagenes/plane-160861_1280.jpg" class="imagenAnimada" width="100" style="margin-top:1%">
+
+<div class="container-fluid" style="margin-top: 1%">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <form name="form1" class="form-horizontal" onsubmit='return validacion();'>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="validarNombre">Nombre:<span>*</span></label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="validarDireccion">Direccion:<span>*</span></label>
+                            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion de casa" required>
+                            <button type="button" class="btn btn-primary" onclick="obtenerUbicacion()">Obtener Ubicación</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="validarEdad">Edad:<span>*</span></label>
+                            <input type="text" class="form-control" id="edad" name="edad" placeholder="Edad" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="validarEmail">Email:<span>*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Correo electronico" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="validarDestino">Destino de interes:<span>*</span></label>
+                            <select class="form-control" id="destino" name="destino" required>
+                                <option value="" selected disabled>Selecciona...</option>
+                                <option>Ninguno</option>
+                                <option>Bolivia</option>
+                                <option>Chile</option>
+                                <option>Argentina</option>
+                                <option>EE.UU</option>
+                                <option>Venezuela</option>
+                            </select>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="acepto" name="acepto" required>
+                            <label class="form-check-label" for="acepto">Acepto las condiciones del registro</label>
+                        </div>
+
+                        <div id="error-container"></div>
+
+                        <div class="form-group" align="center">
+                            <button class="btn btn-primary" type="submit" name="submit">Registro</button>
+                            <button class="btn btn-success" type="reset" name="reset">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

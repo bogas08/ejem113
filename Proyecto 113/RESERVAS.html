@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Aero Connect</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/DESTINOS.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+<body>
+    <script src="JS/DESTINOS.js"></script>
+
+<header>
+    <h1 class="d-inline" align="left">Aero Connect <img src="imagenes/plane-160861_1280.jpg" width="100" align="right"></h1>
+    <nav>
+        <ul>
+            <li><a href="INDEX.html" target="_blank">Inicio</a></li>
+            <li><a href="DESTINOS.html" target="_blank">Destinos</a></li>
+            <li><a href="RESERVAS.html">Reservas</a></li>
+            <li><a href="CONTACTOS.html" target="_blank">Contactos</a></li> 
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="reservas" class="fo">
+        <h2>Reservas</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="ci">CI:</label>
+                        <input type="text" class="form-control" id="ci">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" class="form-control" id="apellido">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" class="form-control" id="telefono">
+                    </div>
+                    <div class="form-group">
+                        <label for="origen">Origen:</label>
+                        <select class="form-control" id="origen">
+                            <option value="La Paz">La Paz</option>
+                            <option value="Santa Cruz">Santa Cruz</option>
+                            <option value="Cochabamba">Cochabamba</option>
+                            <option value="Potosí">Potosí</option>
+                            <option value="Oruro">Oruro</option>
+                            <option value="Chuquisaca">Chuquisaca</option>
+                            <option value="Tarija">Tarija</option>
+                            <option value="Beni">Beni</option>
+                            <option value="Pando">Pando</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="destino">Destino:</label>
+                        <select class="form-control" id="destino">
+                            <option value="La Paz">La Paz</option>
+                            <option value="Santa Cruz">Santa Cruz</option>
+                            <option value="Cochabamba">Cochabamba</option>
+                            <option value="Potosí">Potosí</option>
+                            <option value="Oruro">Oruro</option>
+                            <option value="Chuquisaca">Chuquisaca</option>
+                            <option value="Tarija">Tarija</option>
+                            <option value="Beni">Beni</option>
+                            <option value="Pando">Pando</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" class="form-control" id="fecha">
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad de personas:</label>
+                        <input type="number" class="form-control" id="cantidad">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="validarFormulario()">Reservar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Sobre nosotros</h4>
+                <p>Somos una aerolínea comprometida en brindar experiencias de viaje excepcionales a nuestros pasajeros. Conectamos diferentes destinos en Bolivia y ofrecemos servicios de calidad y comodidad.</p>
+            </div>
+            <div class="col-md-6">
+                <h4>Contacto</h4>
+                <p>Email: info@aeroconnect.com</p>
+                <p>Teléfono: +591 123456789</p>
+                <p>Dirección: Av. Principal 123, La Paz, Bolivia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="JS/DESTINOS.js"></script>
+<script>
+    function validarFormulario() {
+        var ciRegex = /^[0-9]+ [A-Z]+$/;
+        var nombreApellidoRegex = /^[A-Za-z][^0-9]+$/;
+        var cantidadRegex = /^[0-9]+$/;
+
+        var ciInput = document.getElementById("ci");
+        var nombreInput = document.getElementById("nombre");
+        var apellidoInput = document.getElementById("apellido");
+        var direccionInput = document.getElementById("direccion");
+        var cantidadInput = document.getElementById("cantidad");
+
+        var ci = ciInput.value;
+        var nombre = nombreInput.value;
+        var apellido = apellidoInput.value;
+        var direccion = direccionInput.value;
+        var cantidad = cantidadInput.value;
+
+        if (!ciRegex.test(ci)) {
+            prompt("El CI no cumple con el formato válido.");
+            return false;
+        }
+
+        if (!nombreApellidoRegex.test(nombre) || !nombreApellidoRegex.test(apellido)) {
+            prompt("El nombre y el apellido deben comenzar con una letra y no pueden contener números.");
+            return false;
+        }
+
+        if (direccion.includes("@") || direccion.includes("#") || direccion.includes("!")) {
+            prompt("La dirección no puede contener símbolos como @, # o !.");
+            return false;
+        }
+
+        if (!cantidadRegex.test(cantidad) || parseInt(cantidad) > 100) {
+            prompt("La cantidad de personas debe ser un número y no puede ser mayor a 100.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</body>
+</html>
